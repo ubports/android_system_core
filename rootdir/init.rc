@@ -419,6 +419,9 @@ on boot
     chown system system /sys/kernel/ipv4/tcp_rmem_min
     chown system system /sys/kernel/ipv4/tcp_rmem_def
     chown system system /sys/kernel/ipv4/tcp_rmem_max
+    # Temporarily allowing any user to use the vibrator driver
+    ## Until we have a common way to access it via platform-api
+    chmod 0666 /sys/class/timed_output/vibrator/enable
     chown root radio /proc/cmdline
 
     # Define default initial receive window size in segments.
