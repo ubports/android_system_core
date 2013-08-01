@@ -57,6 +57,13 @@ struct fstab_rec {
     int swap_prio;
     unsigned int zram_size;
     unsigned int zram_streams;
+
+    // cwm
+    char *blk_device2;
+    char *fs_type2;
+    char *fs_options2;
+
+    char *lun;
 };
 
 struct fstab *fs_mgr_read_fstab(const char *fstab_path);
