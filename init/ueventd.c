@@ -110,6 +110,10 @@ int ueventd_main(int argc, char **argv)
         nr = poll(&ufd, 1, -1);
         if (nr <= 0)
             continue;
+        if (ufd.revents & POLLERR) {
+               ERROR("got POLLERR, terminating ueventd\n");
+               exit(1);
+        }
         if (ufd.revents & POLLIN)
                handle_device_fd();
     }
