@@ -330,6 +330,9 @@ on post-fs-data
     # Set indication (checked by vold) that we have finished this action
     #setprop vold.post_fs_data_done 1
 
+on early-boot
+    start upstart-watcher
+
 on boot
     # basic network init
     ifup lo
@@ -492,6 +495,9 @@ service healthd /sbin/healthd
     class core
     critical
     seclabel u:r:healthd:s0
+
+service upstart-watcher /sbin/upstart-property-watcher
+    class core
 
 service console /system/bin/sh
     class core
