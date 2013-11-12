@@ -776,9 +776,11 @@ static void export_kernel_boot_props(void)
             property_set(prop_map[i].dest_prop, prop_map[i].def_val);
     }
 
-    ret = property_get("ro.boot.console", tmp);
-    if (ret)
-        strlcpy(console, tmp, sizeof(console));
+    /* XXX: Ubuntu specific, we don't want the Android
+     * container to  use the real console device */
+    //ret = property_get("ro.boot.console", tmp);
+    //if (ret)
+    //    strlcpy(console, tmp, sizeof(console));
 
     /* save a copy for init's usage during boot */
     property_get("ro.bootmode", tmp);
