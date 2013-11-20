@@ -1041,6 +1041,7 @@ int main(int argc, char **argv)
     int signal_fd_init = 0;
     int keychord_fd_init = 0;
     bool is_charger = false;
+    struct stat s;
     bool is_ffbm = false;
 
     if (!strcmp(basename(argv[0]), "ueventd"))
@@ -1056,14 +1057,17 @@ int main(int argc, char **argv)
          * together in the initramdisk on / and then we'll
          * let the rc file figure out the rest.
          */
-    mkdir("/dev", 0755);
-    mkdir("/proc", 0755);
-    mkdir("/sys", 0755);
+    if (stat("/sbin/recovery", &s) == 0) {
+        /* Only create and mount everything if we're in recovery mode */
+        mkdir("/dev", 0755);
+        mkdir("/proc", 0755);
+        mkdir("/sys", 0755);
 
-    mount("tmpfs", "/dev", "tmpfs", MS_NOSUID, "mode=0755");
-    mkdir("/dev/pts", 0755);
-    mkdir("/dev/socket", 0755);
-    mount("devpts", "/dev/pts", "devpts", 0, NULL);
+        mount("tmpfs", "/dev", "tmpfs", MS_NOSUID, "mode=0755");
+        mkdir("/dev/pts", 0755);
+        mkdir("/dev/socket", 0755);
+        mount("devpts", "/dev/pts", "devpts", 0, NULL);
+    }
     mount("proc", "/proc", "proc", 0, NULL);
     mount("sysfs", "/sys", "sysfs", 0, NULL);
 
