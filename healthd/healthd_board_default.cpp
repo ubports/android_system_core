@@ -27,5 +27,6 @@ void healthd_board_init(struct healthd_config*)
 int healthd_board_battery_update(struct android::BatteryProperties*)
 {
     // return 0 to log periodic polled battery status to kernel log
+    /* On Ubuntu we don't want this to be constantly updating the kernel log */
     return 1;
 }
