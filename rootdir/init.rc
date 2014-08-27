@@ -150,6 +150,10 @@ on init
     # checker programs.
     mkdir /dev/fscklogs 0770 root system
 
+    # Create directory used by the camera-service to store its trust-store socket
+    mkdir /dev/socket/camera_service 0770 media media
+    chmod 2770 /dev/socket/camera_service
+
     # pstore/ramoops previous console log
     mount pstore pstore /sys/fs/pstore
     chown system log /sys/fs/pstore/console-ramoops
