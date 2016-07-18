@@ -4,12 +4,12 @@
 # This is a common source of Android security bugs.
 #
 
-import /init.environ.rc
+#import /init.environ.rc
 import /init.usb.rc
 import /init.${ro.hardware}.rc
 import /init.trace.rc
 # Include CM's extra init file
-import /init.cm.rc
+#import /init.cm.rc
 
 
 on early-init
@@ -576,10 +576,12 @@ service surfaceflinger /system/bin/surfaceflinger
     user system
     group graphics drmrpc
     onrestart restart zygote
+    disabled
 service drm /system/bin/drmserver
     class main
     user drm
     group drm system inet drmrpc
+    disabled
 
 service media /system/bin/camera_service
     class main
@@ -590,6 +592,7 @@ service media /system/bin/camera_service
 service installd /system/bin/installd
     class main
     socket installd stream 600 system system
+    disabled
 
 service flash_recovery /system/bin/install-recovery.sh
     class main
