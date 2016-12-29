@@ -564,6 +564,11 @@ service debuggerd /system/bin/debuggerd
 service debuggerd64 /system/bin/debuggerd64
     class main
 
+service miniafservice /system/bin/miniafservice
+    class core
+    user root
+    group audio
+
 service ril-daemon /system/bin/rild 
     class main
     socket rild stream 660 root radio
