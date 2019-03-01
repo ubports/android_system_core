@@ -57,7 +57,7 @@ endif
 # ========================================================
 LOCAL_MODULE := liblog
 LOCAL_SRC_FILES := $(liblog_host_sources)
-LOCAL_CFLAGS := -DFAKE_LOG_DEVICE=1 -Werror
+LOCAL_CFLAGS := -DFAKE_LOG_DEVICE=1 -Wno-alloc-size-larger-than
 LOCAL_MULTILIB := both
 include $(BUILD_HOST_STATIC_LIBRARY)
 

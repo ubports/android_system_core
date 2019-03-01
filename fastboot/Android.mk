@@ -22,7 +22,7 @@ LOCAL_C_INCLUDES := $(LOCAL_PATH)/../mkbootimg \
 LOCAL_SRC_FILES := protocol.c engine.c bootimg.c fastboot.c util.c fs.c
 LOCAL_MODULE := fastboot
 LOCAL_MODULE_TAGS := debug
-LOCAL_CFLAGS += -std=gnu99 -Werror
+LOCAL_CFLAGS += -std=gnu99 -Werror -Wno-format-truncation
 
 ifeq ($(HOST_OS),linux)
   LOCAL_SRC_FILES += usb_linux.c util_linux.c
@@ -86,7 +86,7 @@ ifeq ($(HOST_OS),linux)
 include $(CLEAR_VARS)
 LOCAL_SRC_FILES := usbtest.c usb_linux.c util.c
 LOCAL_MODULE := usbtest
-LOCAL_CFLAGS := -Werror
+LOCAL_CFLAGS := -Werror -Wno-format-truncation
 include $(BUILD_HOST_EXECUTABLE)
 endif
 
