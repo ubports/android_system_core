@@ -64,7 +64,7 @@ endif # HOST_OS != windows
 
 ifneq (,$(filter linux darwin,$(HOST_OS)))
 # libf2fs_dlutils_host will dlopen("libf2fs_fmt_host_dyn")
-LOCAL_CFLAGS += -DUSE_F2FS
+LOCAL_CFLAGS += -DUSE_F2FS -Wno-error=format-truncation
 LOCAL_LDFLAGS += -ldl -rdynamic -Wl,-rpath,.
 LOCAL_REQUIRED_MODULES := libf2fs_fmt_host_dyn
 # The following libf2fs_* are from system/extras/f2fs_utils,

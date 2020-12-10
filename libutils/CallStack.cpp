@@ -22,8 +22,6 @@
 #include <utils/Log.h>
 #include <UniquePtr.h>
 
-#include <backtrace/Backtrace.h>
-
 namespace android {
 
 CallStack::CallStack() {
@@ -37,16 +35,9 @@ CallStack::CallStack(const char* logtag, int32_t ignoreDepth) {
 CallStack::~CallStack() {
 }
 
-void CallStack::update(int32_t ignoreDepth, pid_t tid) {
+void CallStack::update(int32_t, pid_t) {
     mFrameLines.clear();
-
-    UniquePtr<Backtrace> backtrace(Backtrace::Create(BACKTRACE_CURRENT_PROCESS, tid));
-    if (!backtrace->Unwind(ignoreDepth)) {
-        ALOGW("%s: Failed to unwind callstack.", __FUNCTION__);
-    }
-    for (size_t i = 0; i < backtrace->NumFrames(); i++) {
-      mFrameLines.push_back(String8(backtrace->FormatFrameData(i).c_str()));
-    }
+    mFrameLines.push_back(String8("Call stacks are not functional due to a compiler error with gcc 9"));
 }
 
 void CallStack::log(const char* logtag, android_LogPriority priority, const char* prefix) const {

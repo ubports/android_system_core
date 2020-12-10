@@ -44,7 +44,7 @@ commonSources:= \
 	VectorImpl.cpp \
 	misc.cpp
 
-host_commonCflags := -DLIBUTILS_NATIVE=1 $(TOOL_CFLAGS) -Werror -Wno-error=deprecated-declarations
+host_commonCflags := -DLIBUTILS_NATIVE=1 $(TOOL_CFLAGS) -Werror -Wno-error=deprecated-declarations -Wno-error=class-memaccess -Wno-error=implicit-fallthrough -Wno-error=ignored-qualifiers -Wno-error=cast-function-type
 
 ifeq ($(HOST_OS),windows)
 ifeq ($(strip $(USE_CYGWIN),),)
